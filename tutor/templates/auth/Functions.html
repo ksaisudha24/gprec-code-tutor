@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style media="screen">
+      .nav-link {
+        font-size: 1.5em;
+        font-weight: 500;
+      }
+      .bg-light {
+        background-color: #0077b3!important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        color: #0077b3;
+      }
+      .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #707070;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 8.4vh;
+      }
+
+      .sidebar a {
+        padding: 1.12vh 0.13vw 1.12vh 2.08vw;
+        text-decoration: none;
+        font-size: 1.15em !important;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidebar a.side-link:hover, a.nav-link:hover, a.closebtn:hover {
+        color: #f1f1f1;
+      }
+
+      .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 1.63vw;
+        font-size: 2.25em;
+        margin-left: 3.25vw;
+      }
+
+      a.closebtn {
+        font-size: 2.5em !important;
+        color: #F0F0F0;
+      }
+
+      .openbtn {
+        font-size: 1.438em;
+        cursor: pointer;
+        background-color: transparent;
+        color: #606060;
+        padding: 0.98vh 0.976vw;
+        border: none;
+        margin: 0.5%;
+        border-radius: 0.25em;
+      }
+
+      .openbtn:focus {
+        outline: none !important;
+      }
+
+      .openbtn:hover {
+        background-color: #A0A0A0;
+      }
+
+      #main {
+        transition: margin-left .5s;
+      }
+      .button-nav {
+        padding-left: 0;
+        background: #F0F0F0;
+      }
+      .container {
+        margin: 5% auto;
+        background: #F0F0F0;
+      }
+      .content {
+        padding: 1.875em;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .topic {
+        text-shadow: 0.28vh 0.13vw 1.12vh #0077b3;
+        font-weight: 600;
+      }
+
+      .nav2-link {
+        color: #606060 !important;
+        text-decoration:none !important;
+      }
+      a.side-link, a.side-link:visited {
+        color: #F0F0F0 !important;
+      }
+      a.side-link:hover, a.side-link:active {
+        color: white !important;
+      }
+      a.nav-link, a.nav-link:visited {
+        color: #F0F0F0 !important;
+      }
+      a.nav-link:hover, a.nav-link:active {
+        color: white !important;
+      }
+      /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+      @media screen and (max-height: 450px) {
+        .sidebar {padding-top: 2.1vh;}
+        .sidebar a {font-size: 0.938em;}
+      }
+
+      ::-webkit-scrollbar {
+        width: 0.5vw;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #686868;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #585858;
+      }
+      #logo {
+        width: 12em;
+      }
+
+    </style>
+  </head>
+  <body>
+
+      <!-- Navigation bar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"><img src = "{{ url_for('static', filename='tutorLogo.png') }}" id = "logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('tutor.index') }}">Discussions <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item right-end">
+            <a class="nav-link" href="{{ url_for('tutor.logout') }}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <a href="{{ url_for('tutor.c') }}" class="side-link"> About C </a>
+      <a href="{{ url_for('tutor.algorithm') }}" class="side-link">Algorithm</a>
+      <a href="{{ url_for('tutor.start') }}" class="side-link">Getting Started</a>
+      <a href="{{ url_for('tutor.variables') }}" class="side-link">Variables</a>
+      <a href="{{ url_for('tutor.constants') }}" class="side-link">Constants</a>
+      <a href="{{ url_for('tutor.keywords') }}" class="side-link">Keywords</a>
+      <a href="{{ url_for('tutor.datatypes') }}" class="side-link">Datatypes</a>
+      <a href="{{ url_for('tutor.operators') }}" class="side-link">Operators</a>
+      <a href="{{ url_for('tutor.program') }}" class="side-link">First C program</a>
+      <a href="{{ url_for('tutor.decision') }}" class="side-link">Decision Control Structure</a>
+      <a href="{{ url_for('tutor.loop') }}" class="side-link">Loop Control Structure</a>
+      <a href="{{ url_for('tutor.jump') }}" class="side-link">Jump Statements</a>
+      <a href="{{ url_for('tutor.functions') }}" class="topic side-link">Functions</a>
+      <a href="{{ url_for('tutor.arrays') }}" class="side-link">Arrays</a>
+      <a href="{{ url_for('tutor.strings') }}" class="side-link">Strings</a>
+      <a href="{{ url_for('tutor.pointers') }}" class="side-link">Pointers</a>
+</div>
+<div id="main">
+  <div class="button-nav">
+    <button class="openbtn" onclick="openNav()">☰</button>
+    <a href="jump" class="nav2-link">⏪ Previous</a>
+    |
+    <a href="arrays" class="nav2-link">Next ⏩</a>
+  </div>
+
+<!-- Content -->
+
+  <div class="container">
+    <div class="content">
+<!-- Functions -->
+<div >
+</div>
+<br>
+<div >
+<h2 >&nbsp&nbspFunctions</h2>
+<hr><hr>
+<p >A function is a self-contained block of statements that perform a
+coherent task of some kind. Every C program can be thought of as
+a collection of these functions.</p>
+
+<p >➡ Any C program contains at least one function which must be main().</p>
+<p >➡ Program execution always begins with main( ). </p>
+<p >➡ There is no limit on the number of functions that might be present in a C program. </p>
+<p >➡ After each function has done its thing, control returns to
+main( ). When main( ) runs out of function calls, the program ends.</p>
+<p >➡ C program is a collection of one or more functions.
+A function gets called when the function name is followed by
+a semicolon.</p>
+<p >➡ A function is defined when function name is followed by a
+pair of braces in which one or more statements may be
+present. </p>
+ <p >➡ Any function can be called from any other function. Even
+main( ) can be called from other functions. </p>
+<p >➡ A function can be called any number of times. </p>
+<p >➡ The order in which the functions are defined in a program and
+the order in which they get called need not necessarily be
+same. However, it is advisable to define the functions
+in the same order in which they are called. This makes the
+program easier to understand. </p>
+
+<h4 >Advantages of using functions in C</h4>
+
+<p >• The program can be modularised into smaller parts using functions.</p>
+<p >• The function provides reusable code.</p>
+<p >• In large programs, debugging and editing tasks is easy with the use of functions.</p>
+<p >• Separate function independently can be developed according to the needs.</p>
+
+
+<h4 >Parts of Function</h4>
+<p >1. Function Prototype (function declaration)</p>
+<p >2. Function Definition</p>
+<p >3. Function Call</p>
+
+<p ><b>o Function declaration:</b> A function must be declared globally in a c program to tell the compiler about the function name, function parameters, and return type.</p>
+
+<p ><b>o Function call:</b> Function can be called from anywhere in the program. The parameter list must not differ in function calling and function declaration. We must pass the same number of functions as it is declared in the function declaration.</p>
+
+<p ><b>o Function definition:</b> It contains the actual statements which are to be executed. It is the most important aspect to which the control comes when the function is called. Here, we must notice that only one value can be returned from the function.</p>
+
+
+<h4>C function aspects Syntax</h4>
+<p >1. Function declaration return_type function_name (argument list);</p>
+<p >2. Function call function_name (argument_list)</p>
+<p >3. Function definition return_type function_name (argument list) {function body;}</p>
+
+
+<h4>Types of functions in C</h4>
+
+<p ><b>o Built-in(Library) Functions:</b> The system provided these functions and stored in the library. Therefore it is also called Library Functions.</p>
+<p >e.g. scanf(), printf(), strcpy(), strlwr,() strcmp(), strlen(), strcat() etc.To use Inbuilt Function in C, you must include their respective header files, which contain prototypes and data definitions of the function.</p>
+
+<p ><b>o User-defined Functions:</b>   Functions which are created by the C programmer, so that we can use it many times. It reduces the complexity of a big program and optimises the code.</p>
+
+
+
+<h4>Call by value:</h4>
+<p >• The actual parameter is passed to a function.</p>
+<p >• New memory area created for the passed parameters, can be used only within the function.</p>
+<p >• The actual parameters cannot be modified here.</p>
+
+<h4>Call by reference:</h4>
+<p >• Instead of copying variable; an address is passed to function as parameters.</p>
+<p >• Address operator (&) is used in the parameter of the called function.</p>
+<p >• Changes in function reflect the change of the original variables.</p>
+
+
+
+<h4>C variable scope:</h4>
+<p >A scope is a region of the program, and the scope of variables refers to the area of the program where the variables can be accessed after its declaration. In C programming, variable declared within a function is different from a variable declared outside of a function.</p>
+<p >The variable can be declared in three places. They are -</p>
+<p >Inside a function or a block – local variables</p>
+<p >In the function parameters  - formal parameters</p>
+<p >Out of all function                - global variables</p>
+
+<p ><b>Local (private) variables:</b> Variables declared inside a function block are called local to that function and the scope of those variables is limited to that function.</p>
+<p ><b>Global (public) variables:</b> Variables declared outside of a function block are called global and are available for all functions from the declared position outwards.</p>
+
+<p ><b>Note:</b> If global and local parameters fall on same name then preference is given to local only.</p>
+
+<h4 > Program to illustrate the Addition of Two Numbers using User Defined Function</h4>
+
+
+
+<div style="background-color:#00083D;padding:20px;">
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#e08b3e">#include&nbsp;&nbsp;</span>
+<span  style="color:#72bcd4">&#8249;stdio.h&#8250;</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#00FFFF">/* function declaration */</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">int</span>
+<span  style="color:#956b6b">addition</span>
+<span style = "color:#FF0000">();</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">int</span>
+<span  style="color:#956b6b">main</span>
+<span style = "color:#FF0000">() {</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#00FFFF">/* local variable definition */</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">int&nbsp;</span>
+<span  style="color:#956b6b">answer</span>
+<span  style="color:#ff0000">;</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#00FFFF">/* calling a function to get addition value */</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">int&nbsp;</span>
+<span  style="color:#956b6b">answer</span>
+<span  style="color:#ff0000">&nbsp;=&nbsp;</span>
+<span  style="color:#956b6b">addition</span>
+<span style = "color:#FF0000">();</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">return</span>
+<span  style="color:#956b6b">0</span>
+<span  style="color:#ff0000">;</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#ff0000">}</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#00FFFF">/* calling a function to get addition value */</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">int</span>
+<span  style="color:#956b6b">addition</span>
+<span style = "color:#FF0000">() {</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#00FFFF">/* local variable definition */</span></p>
+
+<p ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">int&nbsp;</span>
+<span  style="color:#956b6b">num</span>
+<span  style="color:#ff0000">&nbsp;=&nbsp; </span>
+<span style="color:#956b6b">10, num2</span>
+<span  style="color:#ff0000">&nbsp;=&nbsp; </span>
+<span style="color:#956b6b">5</span>
+<span  style="color:#ff0000">;</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style = "color:#ea00ff">return</span>
+<span  style="color:#956b6b">num1</span>
+<span  style="color:#ff0000">&nbsp;=&nbsp;</span>
+<span  style="color:#956b6b">num2</span>
+<span  style="color:#ff0000">;</span></p>
+
+<p >&nbsp;&nbsp;&nbsp;&nbsp;
+<span  style="color:#ff0000">}</span></p>
+
+</div>
+<br>
+<p style="font-size:18px"><u>Program output:</u></p>
+
+<div style="background-color:#000000;padding:20px;">
+<p style="color:white">The addition of the two numbers is: 15</p>
+</div>
+<br>
+<h4 >Return Value</h4>
+<p >A C function may or may not return a value from the function. If you don't have to return any value from the function, use void for the return type.</p>
+<p >Let's see a simple example of C function that doesn't return any value from the function.</p>
+<p ><b>Example without return value:</b></p>
+<p >1.	void hello() {</p>
+<p >2.	printf("hello c");</p>
+<p >3.	} </p>
+<br>
+<p >If you want to return any value from the function, you need to use any data type such as int, long, char, etc. The return type depends on the value to be returned from the function.
+Let's see a simple example of C function that returns int value from the function.</p>
+<p ><b>Example with return value:</b></p>
+<p >1.	int get() {</p>
+<p >2.	return 10;</p>
+<p >3.	}</p>
+<p >In the above example, we have to return 10 as a value, so the return type is int.</p>
+<br>
+<h4 >C Function Arguments</h4>
+<p >While calling a function, the arguments can be passed to a function in two ways, Call by value and call by reference.</p>
+<br>
+<h4>Call by value:</h4>
+<p >•	The actual parameter is passed to a function.</p>
+<p >•	New memory area created for the passed parameters, can be used only within the function.</p>
+<p >•	The actual parameters cannot be modified here.</p>
+<br>
+<h4>Call by Reference</h4>
+<p >•	The actual parameter is passed to a function.</p>
+<p >•	Both the actual and formal parameters refer to the same locations</p>
+<p >•	The actual parameters can modified here.</p>
+
+<hr><hr>
+</div>
+<br>
+
+
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "18%";
+    document.getElementById("main").style.marginLeft = "18%";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+</script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

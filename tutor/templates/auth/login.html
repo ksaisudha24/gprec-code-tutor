@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<title>Sign In</title>
+	<link rel = "icon" href = "https://img.icons8.com/dusk/50/000000/enter-2.png">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		body {
+			background-color: #F5F5F5;
+		}
+		.hello {
+			font-size: 50px;
+			font-style: italic;
+			color: #FFFFFF;
+		}
+		.signin {
+			font-size: 70px;
+			font-weight: bolder;
+			color: #0077b3;
+		}
+		.text {
+			font-style: italic;
+			font-size: 20px;
+			color: #F5F5F5;
+		}
+		.box {
+			font-size: 30px;
+			background-color: #F5F5F5;
+			border: none;
+			height: 60px;
+		}
+		.submit {
+			height: 60px;
+			width: 200px;
+			border: none;
+			background-color: #0077b3;
+			color: #FFFFFF;
+			font-size: 20px;
+			border-radius: 50px;
+      padding-left: 40px;
+      padding-right: 40px;
+			cursor: pointer;
+		}
+		.submit:hover {
+			border: 2px solid #0077b3;
+			background-color: #FFFFFF;
+			color: #0077b3;
+		}
+		.back {
+			background-color: #0077b3;
+		}
+		.card {
+			height: 620px;
+		}
+		.hellomsg {
+			font-size: 20px;
+			letter-spacing: 2px;
+		}
+		.register {
+			text-decoration: none;
+			font-size: 20px;
+			height: 60px;
+			width: 200px;
+			border-radius: 50px;
+			border: 2.5px solid #FFFFFF;
+			padding: 25px;
+		}
+		.register:hover {
+			background-color: #FFFFFF;
+			color: #0077b3;
+		}
+		.div1 {
+			margin-left: 5%;
+			width: 45%;
+		}
+		.div2 {
+			margin-right: 5%;
+			width: 45%;
+		}
+    .first {
+      border: none;
+      background-color: #F5F5F5;
+      padding: 10px;
+    }
+    .fl {
+      color:  #0077b3;
+      background-color: #FFFFFF;
+      margin: 5%;
+      padding: 10px;
+    }
+	</style>
+</head>
+<br><br><br>
+<body>
+
+	<div class = "w3-half w3-card-4 w3-white card div1">
+		<br><br><br><br>
+		<h1 class = "w3-center signin">Sign In</h1>
+<form method="post">
+			<br>
+			<div class = "w3-center input">
+			<label for = "username" class = "w3-xxlarge"></label>
+			<input name = "username" id = "username" placeholder = "username" required  class = "first w3-center w3-xlarge inputbuttons">
+			</div>
+<div class="w3-center input">
+			<label for = "password" class = "w3-xxlarge"></label>
+			<input type = "password" name="password" placeholder = "password" id="password" required class = "first w3-xlarge w3-center  inputbuttons">
+			</div>
+<br>
+<div class = "w3-center">
+			<input type="checkbox" onclick="myFunction()" class = "w3-center"><span class = "w3-center w3-large w3-text-grey">&nbsp;&nbsp;Show Password</span>
+</div>
+			<script>
+			function myFunction() {
+  			var x = document.getElementById("password");
+  			if (x.type === "password") {
+   				 x.type = "text";
+  			} else {
+    			x.type = "password";
+  			}
+			}
+		</script>
+			<br>
+<div class="w3-center input">
+			<input type = "submit" class = "w3-center w3-xlarge submit" id="click" value = "Sign In">
+		</div>	<br>
+		</form>
+
+	<div class="w3-card-4">
+		{% for message in get_flashed_messages() %}
+			<div class="w3-center w3-xlarge fl">{{ message }}</div>
+		{% endfor %}
+	</div>
+    </div>
+
+	<div class = "w3-half w3-card-4 w3-text-white card back div2">
+		<br><br><br><br>
+		<br>
+		<br><br><br>
+		<h1 class = "w3-center hello">New to Codiac?</h1>
+		<p class = "w3-center hellomsg">Sign Up to start exploring</p>
+		<br>
+		<p class = "w3-center"><a class = "w3-center register" href = "{{ url_for ('tutor.register') }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign Up&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></p>
+	</div>
+</body>
+<br><br><br>
+</html>

@@ -1,0 +1,4 @@
+include tutor/schema.sql
+graft tutor/static
+graft tutor/templates
+global-exclude *.pyc
