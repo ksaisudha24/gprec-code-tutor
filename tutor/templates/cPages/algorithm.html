@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script type="text/javascript" id="botcopy-embedder-d7lcfheammjct" class="botcopy-embedder-d7lcfheammjct" data-botId="63660a5baf42cb0008901c97">
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://widget.botcopy.com/js/injection.js';
+        document.getElementById('botcopy-embedder-d7lcfheammjct').appendChild(s);
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='tutorLogo.png') }}" id="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('tutor.index') }}">Discussions <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item right-end">
+                    <a class="nav-link" href="{{ url_for('tutor.logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="{{ url_for('tutor.c') }}" class="side-link"> About C </a>
+        <a href="{{ url_for('tutor.algorithm') }}" class="topic side-link">Algorithm</a>
+        <a href="{{ url_for('tutor.start') }}" class="side-link">Getting Started</a>
+        <a href="{{ url_for('tutor.variables') }}" class="side-link">Variables</a>
+        <a href="{{ url_for('tutor.constants') }}" class="side-link">Constants</a>
+        <a href="{{ url_for('tutor.keywords') }}" class="side-link">Keywords</a>
+        <a href="{{ url_for('tutor.datatypes') }}" class="side-link">Datatypes</a>
+        <a href="{{ url_for('tutor.operators') }}" class="side-link">Operators</a>
+        <a href="{{ url_for('tutor.program') }}" class="side-link">First C program</a>
+        <a href="{{ url_for('tutor.decision') }}" class="side-link">Decision Control Structure</a>
+        <a href="{{ url_for('tutor.loop') }}" class="side-link">Loop Control Structure</a>
+        <a href="{{ url_for('tutor.jump') }}" class="side-link">Jump Statements</a>
+        <a href="{{ url_for('tutor.functions') }}" class="side-link">Functions</a>
+        <a href="{{ url_for('tutor.arrays') }}" class="side-link">Arrays</a>
+        <a href="{{ url_for('tutor.strings') }}" class="side-link">Strings</a>
+        <a href="{{ url_for('tutor.pointers') }}" class="side-link">Pointers</a>
+    </div>
+    <div id="main">
+        <div class="button-nav">
+            <button class="openbtn" onclick="openNav()">☰</button>
+            <a href="{{ url_for('tutor.c') }}" class="nav2-link">⏪ Previous</a> |
+            <a href="{{ url_for('tutor.start') }}" class="nav2-link">Next ⏩</a>
+        </div>
+
+        <!-- Content -->
+
+        <div class="container">
+            <div class="content">
+                <h1>Algorithm</h1><br>
+                <h2>What is Algorithm?</h2><br>
+                <p>
+                    Before writing a program, a basic idea of how to solve the given problem is extremely necessary. An algorithm helps us have this basic idea. An algorithm is a set of instructions for solving a particular problem.
+                </p>
+                <h2>Characteristics of algorithms</h2><br>
+                <p>&nbsp;1️⃣ &nbsp;Algorithms should be clear and unambiguous.</p>
+                <p>&nbsp;2️⃣ &nbsp;Algorithms must terminate after a finite number of steps.</p>
+                <p>&nbsp;3️⃣ &nbsp;Algorithm’s effectiveness is measured in terms of time and space.</p>
+                <br>
+                <h2>Types of algorithms</h2><br>
+
+                <h4>✔️ Sequential algorithm :</h4>
+                <p>In a sequential algorithm, different steps occur in a sequence.</p>
+                <p>Eg: Finding average of the given numbers
+                    <p>
+                        <p>&nbsp;&#8250;&nbsp;Reading the numbers</p>
+                        <p>&nbsp;&#8250;&nbsp;Calculating the sum of the numbers</p>
+                        <p>&nbsp;&#8250;&nbsp;Calculating the average of the numbers</p>
+                        <br>
+                        <h4>✔️ Conditional algorithm : </h4>
+                        <p>A conditional pattern is the one where different steps are executed based on a condition.
+                            <p>
+                                <p>Eg: To find if a number is odd or even</p>
+                                <p> Read number</p>
+                                <p> if number % 2 == 0 -> it is an even number</p>
+                                <p>else -> it is an odd number
+                                    <p>
+                                        <p>( % is used to find the remainder of two numbers)</p>
+                                        <br>
+                                        <h4>✔️ Iterative algorithm : </h4>
+                                        <p>In this algorithm, a task is performed more than once(repeated).</p>
+
+                                        <p>Let us look at an example of how to write an algorithm to make you understand better.</p>
+                                        <p>Printing numbers from 1 to 10.</p>
+                                        <p>Start</p>
+                                        <p>Declare a variable i;</p>
+                                        <p>Assign i = 1;</p>
+                                        <p>if(i &#8249;= 10)</p>
+                                        <p>Yes-> print i;</p>
+                                        <p>i = i + 1; goto step 4</p>
+                                        <p>No-> goto step 5</p>
+                                        <p>Stop</p>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "18%";
+            document.getElementById("main").style.marginLeft = "18%";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

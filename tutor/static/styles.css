@@ -1,0 +1,167 @@
+.nav-link {
+    font-size: 1.35em;
+    font-weight: 500;
+}
+
+.navbar-toggler {
+    background-color: white;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.bg-light {
+    background-color: #0077b3!important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #0077b3;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #707070;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 8.4vh;
+}
+
+.sidebar a {
+    padding: 1.12vh 0.13vw 1.12vh 2.08vw;
+    text-decoration: none;
+    font-size: 1.15em !important;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a.side-link:hover,
+a.nav-link:hover,
+a.closebtn:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 1.63vw;
+    font-size: 2.25em;
+    margin-left: 3.25vw;
+}
+
+a.closebtn {
+    font-size: 2.5em !important;
+    color: #F0F0F0;
+}
+
+.openbtn {
+    font-size: 1.438em;
+    cursor: pointer;
+    background-color: transparent;
+    color: #606060;
+    padding: 0.98vh 0.976vw;
+    border: none;
+    margin: 0.5%;
+    border-radius: 0.25em;
+}
+
+.openbtn:focus {
+    outline: none !important;
+}
+
+.openbtn:hover {
+    background-color: #A0A0A0;
+}
+
+#main {
+    transition: margin-left .5s;
+}
+
+.button-nav {
+    padding-left: 0;
+    background: #F0F0F0;
+}
+
+.container {
+    margin: 5% auto;
+    background: #F0F0F0;
+}
+
+.content {
+    padding: 1.875em;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.topic {
+    text-shadow: 0.28vh 0.13vw 1.12vh #0077b3;
+    font-weight: 600;
+}
+
+.nav2-link {
+    color: #606060 !important;
+    text-decoration: none !important;
+}
+
+a.side-link,
+a.side-link:visited {
+    color: #F0F0F0 !important;
+}
+
+a.side-link:hover,
+a.side-link:active {
+    color: white !important;
+}
+
+a.nav-link,
+a.nav-link:visited {
+    color: #F0F0F0 !important;
+}
+
+a.nav-link:hover,
+a.nav-link:active {
+    color: white !important;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 2.1vh;
+    }
+    .sidebar a {
+        font-size: 0.938em;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #686868;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #585858;
+}
+
+#logo {
+    width: 12em;
+}

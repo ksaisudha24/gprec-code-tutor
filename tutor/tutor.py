@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash
 
 from tutor.db import get_db
 
-bp = Blueprint("tutor", __name__, url_prefix="/tutor")
+bp = Blueprint("tutor", __name__, url_prefix="/")
 
 
 def login_required(view):
@@ -111,7 +111,7 @@ def login():
 
 @bp.route('/')
 def welcome():
-    return render_template('auth/home.html')
+    return render_template('home.html')
 
 @bp.route("/logout")
 def logout():
@@ -120,70 +120,87 @@ def logout():
     return redirect(url_for("tutor.welcome"))
 
 @bp.route('/newC')
+@login_required
 def c():
-    return render_template('auth/newC.html')
+    return render_template('cPages/aboutC.html')
 
 @bp.route('/algorithm')
+@login_required
 def algorithm():
-    return render_template('auth/Algorithm.html')
+    return render_template('cPages/algorithm.html')
 
 @bp.route('/getting-started')
+@login_required
 def start():
-    return render_template('auth/GettingStarted.html')
+    return render_template('cPages/gettingStarted.html')
 
 @bp.route('/variables')
+@login_required
 def variables():
-    return render_template('auth/Variables.html')
+    return render_template('cPages/variables.html')
 
 @bp.route('/constants')
+@login_required
 def constants():
-    return render_template('auth/Constants.html')
+    return render_template('cPages/constants.html')
 
 @bp.route('/keywords')
+@login_required
 def keywords():
-    return render_template('auth/Keywords.html')
+    return render_template('cPages/keywords.html')
 
 @bp.route('/datatypes')
+@login_required
 def datatypes():
-    return render_template('auth/Datatypes.html')
+    return render_template('cPages/datatypes.html')
 
 @bp.route('/operators')
+@login_required
 def operators():
-    return render_template('auth/Operators.html')
+    return render_template('cPages/operators.html')
 
 @bp.route('/program')
+@login_required
 def program():
-    return render_template('auth/FirstCProgram.html')
+    return render_template('cPages/firstCProgram.html')
 
 @bp.route('/decision')
+@login_required
 def decision():
-    return render_template('auth/Decision.html')
+    return render_template('cPages/decision.html')
 
 @bp.route('/loop')
+@login_required
 def loop():
-    return render_template('auth/Loop.html')
+    return render_template('cPages/loop.html')
 
 @bp.route('/jump')
+@login_required
 def jump():
-    return render_template('auth/Jump.html')
+    return render_template('cPages/jump.html')
 
 @bp.route('/arrays')
+@login_required
 def arrays():
-    return render_template('auth/Arrays.html')
+    return render_template('cPages/arrays.html')
 
 @bp.route('/strings')
+@login_required
 def strings():
-    return render_template('auth/Strings.html')
+    return render_template('cPages/strings.html')
 
 @bp.route('/pointers')
+@login_required
 def pointers():
-    return render_template('auth/Pointers.html')
+    return render_template('cPages/pointers.html')
 
 @bp.route('/functions')
+@login_required
 def functions():
-    return render_template('auth/Functions.html')
+    return render_template('cPages/functions.html')
 
 @bp.route("/discussions")
+@login_required
 def index():
     """Show all the posts, most recent first."""
     db = get_db()
@@ -192,7 +209,7 @@ def index():
         " FROM post p JOIN user u ON p.author_id = u.id"
         " ORDER BY created DESC"
     ).fetchall()
-    return render_template("blog/discussions.html", posts=posts)
+    return render_template("discussions/viewDiscussions.html", posts=posts)
 
 def get_post(id, check_author=True):
     """Get a post and its author by id.
@@ -252,7 +269,7 @@ def create():
         " FROM post p JOIN user u ON p.author_id = u.id"
         " ORDER BY created DESC"
     ).fetchall()
-    return render_template("blog/createNew.html", posts=posts)
+    return render_template("discussions/create.html", posts=posts)
 
 
 @bp.route("/<int:topic_id>/update", methods=("GET", "POST"))
@@ -285,7 +302,7 @@ def update(topic_id):
         " ORDER BY created DESC"
     ).fetchall()
 
-    return render_template("blog/updateNew.html", post=post, posts=posts)
+    return render_template("discussions/update.html", post=post, posts=posts)
 
 
 @bp.route("/<int:topic_id>/delete", methods=("POST",))
@@ -320,7 +337,7 @@ def comments(topic_id):
         db.commit()
         return redirect(url_for("tutor.comments", topic_id=post['topic_id']))
 
-    return render_template("blog/viewPost.html", postcoms=postcoms, post=post)
+    return render_template("discussions/viewPost.html", postcoms=postcoms, post=post)
 
 
 def query_db(query, args=(), one=False):
